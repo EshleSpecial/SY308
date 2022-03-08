@@ -1,0 +1,11 @@
+
+m221938@ubuntu:~/Desktop/hw05$ python3 cbc_keygen.py key.bin
+python3: can't open file 'cbc_keygen.py': [Errno 2] No such file or directory
+m221938@ubuntu:~/Desktop/hw05$ python3 CBC.py key.bin
+m221938@ubuntu:~/Desktop/hw05$ python3 CBC.py key.bin msg.txt cipher.bin
+m221938@ubuntu:~/Desktop/hw05$ python3 CBC.py key.bin cipher.bin msg2.txt
+m221938@ubuntu:~/Desktop/hw05$ diff msg.txt msg2.txt
+diff: msg.txt: No such file or directory
+diff: msg2.txt: No such file or directory
+m221938@ubuntu:~/Desktop/hw05$ 
+

@@ -1,17 +1,29 @@
+from sys import argv
 import sys
+from os import urandom
 
-keyFileName = sys.argv[1]
-messageFileName = sys.argv[2]
-cipherFileName = sys.argv[3]
+def encryption(keyFile, messageFile, out):
+    cipher = ""
+    with open(keyFile, "rb") as kf:
+        key = b""
+        for i in kf:
+            key += i
+    with open(messageFile, "rb") as mf:
+        message = b""
+        for m in mf:
+            message += m
 
-keyFile = open(keyFileName, 'wb')
-k = keyFile.read()
-keyFile.close()
-messageFile = open(messageFileName, 'r')
-message = messageFile.read()
-messageFile.close()
+    if len(message) > len(key):
+        print("Key must be same size as message")
+        exit()
+    enc = open(out, "wb")
+    cipher = bytearray(len(message))
+    for j in range(len(message)):
+        cipher[j] = (key[j] ^ message[j])
+    enc.write(cipher)
+    enc.close()
 
-M = message.encode()
-c = bytearray(len(M))
-for i in range(len(M)):
-   c[i] = k[i]^M[i]
+if __name__ == "__main__":
+    if len(argv) < 4:
+        exit()
+    encryption(argv[1], argv[2], argv[3])
